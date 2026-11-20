@@ -1,0 +1,277 @@
+/* =========================================================
+   style.css: CS Quiz with field selection
+   Mobile-first, vanilla CSS, no frameworks.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. RESET
+   --------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------
+   2. PAGE LAYOUT: cream background, card centered
+   --------------------------------------------------------- */
+body {
+    background-color: #F7EFE6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    font-family: sans-serif;
+    color: #1E293B;
+}
+
+.container {
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ---------------------------------------------------------
+   3. SCREENS: only the active one is visible
+   --------------------------------------------------------- */
+.screen {
+    display: none;
+    padding: 2.5rem 2rem;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* ---------------------------------------------------------
+   4. START SCREEN
+   --------------------------------------------------------- */
+#start-screen {
+    text-align: center;
+}
+
+#start-screen h1 {
+    color: #C2410C;
+    margin-bottom: 0.75rem;
+    font-size: 2.5rem;
+}
+
+#start-screen p {
+    color: #555;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Field picker: grid of topic buttons */
+.field-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 1.5rem;
+}
+
+.field-btn {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: left;
+    background-color: #FDF3EC;
+    color: #1E293B;
+    border: 2px solid #F5DCCB;
+    border-radius: 12px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.field-btn:hover {
+    background-color: #FCE9DC;
+    border-color: #E8703A;
+    color: #1E293B;
+    transform: translateY(-2px);
+}
+
+/* Two columns on tablets and up */
+@media (min-width: 500px) {
+    .field-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ---------------------------------------------------------
+   5. QUIZ SCREEN
+   --------------------------------------------------------- */
+.quiz-header {
+    margin-bottom: 2rem;
+}
+
+/* Field name label above the question */
+.field-name {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #C2410C;
+    background-color: #FDE7DC;
+    border-radius: 999px;
+}
+
+#question-text {
+    color: #1E293B;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+    margin-bottom: 1px;
+}
+
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+/* Answer buttons */
+.answer-btn {
+    background-color: #FDF3EC;
+    color: #333;
+    border: 2px solid #F5DCCB;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    text-align: left;
+}
+
+.answer-btn:hover {
+    background-color: #FCE9DC;
+    border-color: #E8703A;
+}
+
+.answer-btn.correct {
+    background-color: #E8F7EE;
+    border-color: #6BBF8A;
+    color: #1F7A4A;
+}
+
+.answer-btn.incorrect {
+    background-color: #FFF0F0;
+    border-color: #FFBDBD;
+    color: #DC3545;
+}
+
+/* Progress bar */
+.progress-bar {
+    height: 10px;
+    background-color: #FDE7DC;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #E8703A;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* ---------------------------------------------------------
+   6. RESULT SCREEN
+   --------------------------------------------------------- */
+#result-screen {
+    text-align: center;
+}
+
+#result-screen h1 {
+    color: #C2410C;
+    margin-bottom: 0.75rem;
+}
+
+.result-field {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.result-info p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+#result-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #E8703A;
+    margin-bottom: 25px;
+}
+
+/* ---------------------------------------------------------
+   7. BUTTONS (shared style)
+   --------------------------------------------------------- */
+button {
+    background-color: #E8703A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #C2410C;
+}
+
+/* Keep the field and answer buttons from picking up the shared style */
+.field-btn,
+.answer-btn {
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+}
+
+.field-btn:hover {
+    background-color: #FCE9DC;
+}
+
+.answer-btn:hover {
+    background-color: #FCE9DC;
+}
+
+/* ---------------------------------------------------------
+   8. RESPONSIVE (small phones)
+   --------------------------------------------------------- */
+@media (max-width: 500px) {
+    .screen {
+        padding: 1.25rem;
+    }
+
+    #start-screen h1 {
+        font-size: 2rem;
+    }
+
+    #question-text {
+        font-size: 1.3rem;
+    }
+
+    .answer-btn {
+        padding: 12px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
